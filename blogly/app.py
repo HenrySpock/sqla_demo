@@ -28,3 +28,15 @@ def add_user():
     first_name = request.form["first_name"]
     last_name = request.form["last_name"] 
     image_url = request.form["image_url"]
+
+    new_user = User(first_name=first_name, last_name=last_name, image_url=image_url)
+    db.session.add(new_user)
+    db.session.commit()
+
+    return redirect(f"/{new_user.id}")
+
+@app.route("/<int:user_id>")
+def show_user(user_id):
+    """Show details about a single pet.""" 
+    user = User.query.get_or_404(user_id)
+    return render_template("user_details.html", user=user)
