@@ -35,13 +35,12 @@ def add_user():
 
     db.session.add(new_user)
     db.session.commit()
-    return render_template("users/new_user.html")
 
-
+    # return render_template("users/new_user.html")
     return redirect("/")
 
-@app.route("/<int:user_id>")
-def show_user(user_id):
-    """Show details about a single user.""" 
-    user = User.query.get_or_404(user_id)
-    return render_template("user_details.html", user=user)
+# @app.route("/<int:user_id>")
+# def show_user(user_id):
+#     """Show details about a single user.""" 
+#     user = User.query.get_or_404(user_id)
+#     return render_template("user_details.html", user=user)
