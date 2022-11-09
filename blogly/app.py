@@ -19,7 +19,7 @@ db.create_all()
 
 @app.route('/')
 def list_users():
-    """Shows list of all pets in db."""
+    """Shows list of all users in db."""
     users = User.query.all()
     return render_template('index.html', users=users)
 
@@ -37,6 +37,6 @@ def add_user():
 
 @app.route("/<int:user_id>")
 def show_user(user_id):
-    """Show details about a single pet.""" 
+    """Show details about a single user.""" 
     user = User.query.get_or_404(user_id)
     return render_template("user_details.html", user=user)
