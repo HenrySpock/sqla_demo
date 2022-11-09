@@ -23,17 +23,22 @@ def list_users():
     users = User.query.all()
     return render_template('index.html', users=users)
 
-@app.route('/users/new_user') 
+@app.route("/users/new_user", methods=["POST"])
+# @app.route("/users/new_user")
 def add_user():
-    new_user=User(
-    first_name = request.form["first_name"]
-    last_name = request.form["last_name"] 
-    image_url = request.form["image_url"] or None)
+    """Create new user from form submission."""
+
+    new_user = User(
+        first_name=request.form['first_name'],
+        last_name=request.form['last_name'],
+        image_url=request.form['image_url'] or None)
 
     db.session.add(new_user)
     db.session.commit()
+    return render_template("users/new_user.html")
 
-    return redirect('index.html')
+
+    return redirect("/")
 
 @app.route("/<int:user_id>")
 def show_user(user_id):
